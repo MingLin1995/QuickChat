@@ -12,6 +12,6 @@ export class AppController {
 
   @Get('api/greeting')
   getGreeting(): string {
-    return 'Hello from the server!';
+    return "成功連接後端伺服器啦！！！";
   }
 }

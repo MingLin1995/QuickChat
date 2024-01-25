@@ -1,3 +1,4 @@
+// 用於測試網站性能的工具
 import { ReportHandler } from 'web-vitals';
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
