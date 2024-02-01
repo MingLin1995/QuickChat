@@ -37,5 +37,5 @@
 # 系統文件
 .DS_Store
 .vscode
-/server/.env
+.env
 
