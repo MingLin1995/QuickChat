@@ -1,4 +1,5 @@
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../.env' }); // 從根目錄讀取 .env 檔案
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 

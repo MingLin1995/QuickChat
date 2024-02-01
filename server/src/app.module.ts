@@ -19,7 +19,7 @@ import { NicknameModule } from './nickname/nickname.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'db', // 使用 docker-compose.yml 中定義的服務名稱 不能用localhost
       port: 5432,
       database: process.env.DATABASE_NAME,
       username: process.env.DATABASE_USER,
