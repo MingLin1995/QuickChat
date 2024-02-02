@@ -8,6 +8,7 @@ RUN npm install
 
 COPY . .
 
+# 建立靜態文件
 RUN npm run build
 
 # 生產階段，使用 nginx 映像
