@@ -4,8 +4,6 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    ports:
-      - "80:80"
     depends_on:
       - server
 
@@ -36,9 +34,11 @@ services:
   nginx:
     image: nginx:stable-alpine
     ports:
-      - "8080:80"
+      - "443:443"
+      - "80:80"
     volumes:
       - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
       - ./client/build:/usr/share/nginx/html
 volumes:
   db-data:
