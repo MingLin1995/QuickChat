@@ -2,7 +2,6 @@
 node_modules/
 
 # 編譯文件和生成的資源
-build/
 dist/
 
 # 開發者工具和編輯器目錄

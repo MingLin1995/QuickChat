@@ -25,7 +25,7 @@ const Nickname = () => {
 
     try {
       // 檢查暱稱是否存在
-      const checkResponse = await fetch(`/api/nicknames/${nickname}`);
+      const checkResponse = await fetch(`/nicknames/${nickname}`);
       if (!checkResponse.ok) {
         throw new Error(`檢查暱稱錯誤: ${checkResponse.status}`);
       }
@@ -39,7 +39,7 @@ const Nickname = () => {
       setStoredNickname(nickname);
 
       // 將暱稱儲存到資料庫
-      const response = await fetch("/api/nicknames/", {
+      const response = await fetch("/nicknames/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Nickname = () => {
   // 處理登出
   const handleLogout = async () => {
     try {
-      const response = await fetch(`/api/nicknames/${storedNickname}`, {
+      const response = await fetch(`/nicknames/${storedNickname}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
