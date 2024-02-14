@@ -39,3 +39,7 @@
 .vscode
 .env
 
+# 本地 nginx 配置
+/nginx/conf/nginx-local.conf
+
+
