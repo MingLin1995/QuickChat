@@ -1,7 +1,11 @@
 // src/components/Nickname.tsx
 import React, { useState, useEffect } from "react";
 
-const Nickname = () => {
+interface NicknameProps {
+  onNicknameSet: (nickname: string) => void; // 接受一個字符串參數並且不返回任何值的函數
+}
+
+const Nickname: React.FC<NicknameProps> = ({ onNicknameSet }) => {
   const [nickname, setNickname] = useState<string>("");
   const [storedNickname, setStoredNickname] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -34,12 +38,12 @@ const Nickname = () => {
         throw new Error('暱稱已被使用，請使用其他暱稱');
       }
 
-      // 將暱稱儲存至 localStorage
       localStorage.setItem("chat-nickname", nickname);
       setStoredNickname(nickname);
+      onNicknameSet(nickname); // 更新App組件中的暱稱狀態
 
       // 將暱稱儲存到資料庫
-      const response = await fetch("/nicknames/", {
+      const response = await fetch("/nicknames", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,46 +65,18 @@ const Nickname = () => {
     }
   };
 
-
-  // 處理登出
-  const handleLogout = async () => {
-    try {
-      const response = await fetch(`/nicknames/${storedNickname}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error(`登出失敗: ${response.status}`);
-      }
-      console.log('登出成功');
-      // 清除 localStorage 中的暱稱
-      localStorage.removeItem("chat-nickname");
-      setStoredNickname("");
-      setNickname("")
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
   return (
     <div>
-      {storedNickname ? (
-        <div>
-          <p>歡迎, {storedNickname}</p>
-          <button onClick={handleLogout}>登出</button>
-        </div>
-      ) : (
-        <div>
-          <input
-            type="text"
-            value={nickname}
-            onChange={handleNicknameChange}
-            placeholder="請輸入暱稱"
-          />
-          <button onClick={handleNicknameSubmit}>開始</button>
-          {error && <p className="error">{error}</p>} {/* 顯示錯誤信息 */}
-        </div>
-      )}
+      <input
+        type="text"
+        value={nickname}
+        onChange={handleNicknameChange}
+        placeholder="請輸入暱稱"
+      />
+      <button onClick={handleNicknameSubmit}>開始</button>
+      {error && <p className="error">{error}</p>} {/* 顯示錯誤信息 */}
     </div>
+
   );
 };
 
