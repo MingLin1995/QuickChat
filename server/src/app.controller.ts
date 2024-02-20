@@ -1,3 +1,4 @@
+// src/app.controller.ts
 import { Controller, Get } from '@nestjs/common';
 // 引入 AppService，這個服務將在控制器中使用
 import { AppService } from './app.service';
@@ -19,6 +20,6 @@ export class AppController {
   @Get('api/greeting')
   getGreeting(): string {
     // 返回固定的字符串，表示成功連接後端伺服器
-    return "成功連接後端伺服器啦！！！";
+    return '成功連接後端伺服器啦！！！';
   }
 }

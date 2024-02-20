@@ -7,6 +7,7 @@ import { Module } from '@nestjs/common';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NicknameModule } from './nickname/nickname.module';
+import { MessageModule } from './message/message.module';
 
 // // 使用 @Module 裝飾器定義一個 Nest.js 模組，這個模組將包含控制器和提供者
 // @Module({
@@ -28,6 +29,7 @@ import { NicknameModule } from './nickname/nickname.module';
       synchronize: true, // 設置為 true 表示在開發模式下會自動創建資料庫表，這在生產環境中應該設置為 false 手動管理數據庫結構以確保穩定性。
     }),
     NicknameModule,
+    MessageModule,
   ],
 })
 export class AppModule {} // 定義 AppModule 類別，表示這個模組的主要定義

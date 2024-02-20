@@ -29,6 +29,7 @@ export class NicknameService {
   }
   // 刪除暱稱
   async removeNickname(name: string): Promise<void> {
+    // promise<void> 不會返回任何有意義的值
     await this.nicknameRepository.delete({ name });
   }
 }
