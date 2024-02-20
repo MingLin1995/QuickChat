@@ -6,8 +6,9 @@ import { NicknameController } from './nickname.controller';
 import { Nickname } from './nickname.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Nickname])],
-  providers: [NicknameService],
-  controllers: [NicknameController],
+  imports: [TypeOrmModule.forFeature([Nickname])], // 導入
+  providers: [NicknameService], // 邏輯處理
+  controllers: [NicknameController], // 控制器
+  exports: [TypeOrmModule.forFeature([Nickname])], // 導出
 })
 export class NicknameModule {}
