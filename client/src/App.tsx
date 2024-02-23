@@ -13,10 +13,11 @@ function App() {
     if (storedNickname) {
       setNickname(storedNickname);
     }
-  }, []);
+  }, []); // 依賴陣列為空，表示只在組件加載時執行一次
 
+  // 處理暱稱設定
   const handleNicknameSet = (nickname: string) => {
-    setNickname(nickname);
+    setNickname(nickname); // 設置暱稱狀態
   };
 
   // 處理登出
@@ -42,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {nickname ? (
+        {nickname ? ( // 如果有暱稱，顯示聊天室組件，否則顯示暱稱設定組件
           <>
             <ChatRoom onLogout={handleLogout} />
           </>
