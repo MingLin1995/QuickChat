@@ -1,5 +1,6 @@
 // src/components/Nickname.tsx
 import React, { useState, useEffect } from "react";
+import './Nickname.css';
 
 interface NicknameProps {
   onNicknameSet: (nickname: string) => void; // 接受一個字符串參數並且不返回任何值的函數
@@ -58,25 +59,26 @@ const Nickname: React.FC<NicknameProps> = ({ onNicknameSet }) => {
       }
 
       const data = await response.json();
-      console.log("暱稱儲存到資料庫:", data);
+      //console.log("暱稱儲存到資料庫:", data);
     } catch (error) {
       const message = error instanceof Error ? error.message : '發生未預期的錯誤';
       setError(message);  // 設定錯誤訊息
       setNickname("")
-      console.error("Error:", error);
+      //console.error("Error:", error);
     }
   };
 
   return (
-    <div>
+    <div className="nicknameContainer">
       <input
         type="text"
         value={nickname}
         onChange={handleNicknameChange}
         placeholder="請輸入暱稱"
+        className="nicknameInput"
       />
-      <button onClick={handleNicknameSubmit}>開始</button>
-      {error && <p className="error">{error}</p>} {/* 顯示錯誤信息 */}
+      <button onClick={handleNicknameSubmit} className="nicknameButton">開始</button>
+      {error && <div className="error">{error}</div>} {/* 顯示錯誤訊息 */}
     </div>
 
   );

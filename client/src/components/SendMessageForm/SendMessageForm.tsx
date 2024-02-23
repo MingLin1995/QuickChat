@@ -1,6 +1,7 @@
 // src/components/SendMessageForm.tsx
 
 import React, { useState } from 'react';
+import './SendMessageForm.css';
 
 // 定義組件屬性的介面
 interface SendMessageFormProps {
@@ -53,15 +54,16 @@ const SendMessageForm: React.FC<SendMessageFormProps> = ({ onSendMessage }) => {
 
     return (
         // 表單元素，當提交時調用 handleSubmit 函數
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="sendMessageForm">
             {/* 輸入框，value 綁定到狀態 message，onChange 事件處理函數更新狀態 */}
             <input
+                className="sendMessageInput"
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="請輸入訊息"
             />
-            <button type="submit">發送</button>
+            <button className="sendMessageButton" type="submit">發送</button>
         </form>
     );
 };

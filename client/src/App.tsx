@@ -1,8 +1,8 @@
 // src/App.tsx 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Nickname from './components/Nickname';
-import ChatRoom from './components/ChatRoom';
+import Nickname from './components/Nickname/Nickname';
+import ChatRoom from './components/ChatRoom/ChatRoom';
 
 function App() {
   const [nickname, setNickname] = useState('');
@@ -29,7 +29,7 @@ function App() {
       if (!response.ok) {
         throw new Error(`登出失敗: ${response.status}`);
       }
-      console.log('登出成功，伺服器端資源已清理');
+      //console.log('登出成功，伺服器端資源已清理');
       // 清空暱稱並清除 localStorage 中的暱稱
       setNickname('');
       localStorage.removeItem('chat-nickname');

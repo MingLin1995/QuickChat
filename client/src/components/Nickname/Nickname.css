@@ -1,0 +1,15 @@
+.nicknameContainer {
+  @apply flex flex-col justify-center items-center gap-4 p-4;
+}
+
+.nicknameInput {
+  @apply bg-gray-200 text-gray-800 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full;
+}
+
+.nicknameButton {
+  @apply bg-green-500 text-white p-3 rounded-lg hover:bg-green-700 transition duration-300 w-full;
+}
+
+.error {
+  @apply text-red-500 mt-2 text-center;
+}
