@@ -1,6 +1,14 @@
 // src/message/message.controller.ts
 
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MessageService } from './message.service';
 
 @Controller('messages')
@@ -26,5 +34,18 @@ export class MessageController {
   @Get()
   getMessages() {
     return this.messageService.getMessages();
+  }
+
+  @Put(':id')
+  async updateMessage(
+    @Param('id') id: number,
+    @Body() updateMessageDto: { content: string },
+  ) {
+    return this.messageService.updateMessage(id, updateMessageDto.content);
+  }
+
+  @Delete(':id')
+  async deleteMessage(@Param('id') id: number) {
+    return this.messageService.deleteMessage(id);
   }
 }
