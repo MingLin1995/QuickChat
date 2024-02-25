@@ -1,8 +1,8 @@
 // src/App.tsx 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Nickname from './components/Nickname';
-import ChatRoom from './components/ChatRoom';
+import Nickname from './components/Nickname/Nickname';
+import ChatRoom from './components/ChatRoom/ChatRoom';
 
 function App() {
   const [nickname, setNickname] = useState('');
@@ -13,10 +13,11 @@ function App() {
     if (storedNickname) {
       setNickname(storedNickname);
     }
-  }, []);
+  }, []); // 依賴陣列為空，表示只在組件加載時執行一次
 
+  // 處理暱稱設定
   const handleNicknameSet = (nickname: string) => {
-    setNickname(nickname);
+    setNickname(nickname); // 設置暱稱狀態
   };
 
   // 處理登出
@@ -28,7 +29,7 @@ function App() {
       if (!response.ok) {
         throw new Error(`登出失敗: ${response.status}`);
       }
-      console.log('登出成功，伺服器端資源已清理');
+      //console.log('登出成功，伺服器端資源已清理');
       // 清空暱稱並清除 localStorage 中的暱稱
       setNickname('');
       localStorage.removeItem('chat-nickname');
@@ -42,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {nickname ? (
+        {nickname ? ( // 如果有暱稱，顯示聊天室組件，否則顯示暱稱設定組件
           <>
             <ChatRoom onLogout={handleLogout} />
           </>

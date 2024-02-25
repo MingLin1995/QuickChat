@@ -40,6 +40,23 @@ export class MessageService {
   }
 
   async getMessages(): Promise<Message[]> {
-    return this.messageRepository.find(); // 簡單地從資料庫檢索所有消息
+    return this.messageRepository.find();
+  }
+
+  async updateMessage(id: number, content: string): Promise<Message> {
+    const message = await this.messageRepository.findOneBy({ id });
+    if (!message) {
+      throw new Error('Message not found');
+    }
+    message.content = content;
+    await this.messageRepository.save(message);
+    return message;
+  }
+
+  async deleteMessage(id: number): Promise<void> {
+    const result = await this.messageRepository.delete(id);
+    if (result.affected === 0) {
+      throw new Error('Message not found or already deleted');
+    }
   }
 }
