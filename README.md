@@ -9,13 +9,17 @@
 3. 資料庫 PostgreSQL
 4. Nginx
 5. certbot 在 Docker 內申請 SSL 憑證，需要手動設定 Godaddy DNS 的 TXT 紀錄，所以無法自動更新到期日 certbot 沒有支援 GoDaddy 的 API ，如果是 NET 就可以自動更新
+6. Docker 可以透過 local 或 prod 設定開發以及正式環境，避免開發環境沒有申請 SSL
+   ```
+   export NGINX_CONFIG=prod
+   docker-compose up -d
+   ```
 
 ---
 
 未完成：
 
-1. 留言板功能大致上完成（還沒上雲測試）
-2. 留言板改為聊天室，用 Socket.IO 給它處理一下
+1. 留言板可以改為聊天室，用 Socket.IO 給它處理一下
 
 ---
 
